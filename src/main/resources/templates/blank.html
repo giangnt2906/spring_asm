@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin.html}">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <!--css-->
+  <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+</head>
+<body>
+<div layout:fragment="content">
+  <h1> List Employee</h1>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Position</th>
+      <th>Department</th>
+    </tr>
+
+    <tr th:each="p: ${emps}">
+      <td th:text="${p.id}">id</td>
+      <td th:text="${p.name}">name</td>
+      <td th:text="${p.age}">age</td>
+      <td th:text="${p.position}">position</td>
+      <td th:text="${p.department}">department</td>
+    </tr>
+  </table>
+
+  <br />
+
+  <a th:href="@{/addemployee}">+ Add new Employee</a>
+</div>
+
+<!--script part-->
+<!--js-->
+<script th:src="@{/js/sb-admin-2.js}"></script>
+<!-- Bootstrap core JavaScript-->
+<script th:src="/vendor/jquery/jquery.min.js"></script>
+<script th:src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+
+</html>

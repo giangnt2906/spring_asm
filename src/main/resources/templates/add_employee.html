@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin.html}">
+<head>
+  <meta charset="UTF-8" />
+  <title>Home</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <!--css-->
+  <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" />
+  <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div align="center">
+    <h1> Employee Form</h1>
+    <br />
+    <form action="#" th:action="@{/addemployee}" th:object="${emp}"
+          method="post">
+
+      <table border="0" cellpadding="10">
+        <tr>
+          <td>
+            <input type="hidden" th:field="*{id}" readonly="readonly" />
+          </td>
+        </tr>
+        <tr>
+          <td>Employee Name:</td>
+          <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+          <td>Age:</td>
+          <td><input type="text" th:field="*{age}" /></td>
+        </tr>
+        <tr>
+          <td>Position:</td>
+          <td><input type="text" th:field="*{position}" /></td>
+        </tr>
+        <tr>
+          <td>Department:</td>
+          <td><input type="text" th:field="*{department}" /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit">Save</button> </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <br />
+
+  <a th:href="@{/list}">Back to List</a>
+</div>
+
+<!--script part-->
+<!--js-->
+<script th:src="@{/js/sb-admin-2.js}"></script>
+<!-- Bootstrap core JavaScript-->
+<script th:src="/vendor/jquery/jquery.min.js"></script>
+<script th:src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+</body>
+
+</html>
