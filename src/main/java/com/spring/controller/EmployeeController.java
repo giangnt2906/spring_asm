@@ -15,7 +15,7 @@ public class EmployeeController {
 
     @GetMapping(path = "/list")
     public String listEmp(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
-                          @RequestParam(name = "limit", defaultValue = "3") int limit) {
+                          @RequestParam(name = "limit", defaultValue = "10") int limit) {
         model.addAttribute("emps", employeeService.getAllEmployees(page, limit));
         return "list";
     }
@@ -50,4 +50,15 @@ public class EmployeeController {
         model.addAttribute("emp", employeeService.getDetailEmp(id));
         return "detailEmp";
     }
+
+    //search by name in list page
+    @GetMapping("/employee/search")
+    public String search(@RequestParam("s") String s, Model model) {
+        if(s.equals(""))
+            return"redirect:/list";
+
+        model.addAttribute("emps",employeeService.searchByName(s));
+        return"list";
+    }
+
 }
