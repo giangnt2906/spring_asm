@@ -15,8 +15,9 @@ public class EmployeeController {
 
     @GetMapping(path = "/list")
     public String listEmp(Model model, @RequestParam(name = "page", defaultValue = "1") int page,
-                          @RequestParam(name = "limit", defaultValue = "10") int limit) {
+                          @RequestParam(name = "limit", defaultValue = "5") int limit) {
         model.addAttribute("emps", employeeService.getAllEmployees(page, limit));
+        model.addAttribute("empsList", employeeService.getAllEmp());
         return "list";
     }
 

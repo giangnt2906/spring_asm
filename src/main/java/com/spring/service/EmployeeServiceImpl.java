@@ -21,14 +21,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public List<Employee> getAllEmp() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
     public void createEmp(Employee employee) {
         employeeRepository.save(employee);
     }
 
-    @Override
+    /*@Override
     public void updateEmp(Employee employee) {
         employeeRepository.save(employee);
-    }
+    }*/
 
     @Override
     public void deleteEmp(Integer id) {

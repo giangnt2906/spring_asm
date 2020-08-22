@@ -12,6 +12,7 @@
     <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
 
 </head>
 <body>
@@ -22,16 +23,33 @@
         <div class="card-body">
             <div class="fw-container">
                 <div class="fw-header">
-                    <div class="navbar-search">
-                        <div class="nav-item search">
-                            <form class="form-inline pull-right" action="#"
-                                  th:action="@{/employee/search}" method="GET">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="s"
-                                           placeholder="Type employee name..." />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <form id="form_limit_pagination" class="form-inline pull-left" th:action="@{/list}" method="get" action="#" style="margin-top: 10px">
+                                <div class="navbar-search">
+                                    Showing
+                                    <select th:name="limit" th:onchange="document.getElementById('form_limit_pagination').submit()">
+                                        <option value="">--Change limit--</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                     entries
                                 </div>
-                                <button type="submit" class="btn btn-primary">Search</button>
                             </form>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="navbar-search">
+                                <div class="nav-item search">
+                                    <form class="form-inline pull-right" action="#"
+                                          th:action="@{/employee/search}" method="GET">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="s"
+                                                   placeholder="Type employee name..." />
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,6 +98,18 @@
                     </tbody>
                 </table>
             </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-12 col-md-5">
+                    <span th:if="${param.page==null}" th:text="'Showing 1 to 10 of '+${#lists.size(empsList)}+' entries'">
+                    </span>
+                    <span th:with="from=(${param.page}-1)*(${param.limit}+1)" th:text="'Showing '+${from}+' to y of '+${#lists.size(empsList)}+' entries'">
+                    </span>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    Paging
+                </div>
+            </div>
         </div>
     </div>
 
@@ -93,7 +123,7 @@
 <!-- Bootstrap core JavaScript-->
 <script th:src="/vendor/jquery/jquery.min.js"></script>
 <script th:src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script th:src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 </body>
